@@ -46,23 +46,24 @@ class MainWindow(tk.Tk):
         self.frame = tk.Frame(self, bd=2, relief=tk.SUNKEN)
         self.frame.pack(pady=5, fill=tk.BOTH, expand=True)
 
-        self.add_recipe_button = tk.Button(self.frame, text="Add Recipe", command=self.open_add_recipe_window, relief=tk.RAISED, bg="lightgreen", fg="black", font=("Arial", 12))
+        self.add_recipe_button = tk.Button(self.frame, text="Add Recipe", command=self.open_add_recipe_window, 
+                                     relief=tk.RAISED, bg="lightgreen", fg="black", font=("Arial", 12))
         self.add_recipe_button.pack(pady=5)
+        self.add_recipe_button.bind("<Enter>", lambda e: self.add_recipe_button.config(bg="#90EE90"))  # Світліший зелений
+        self.add_recipe_button.bind("<Leave>", lambda e: self.add_recipe_button.config(bg="lightgreen"))
 
-        self.search_recipes_button = tk.Button(self.frame, text="Show Recipes based on Ingredients", command=self.open_search_recipes_window, relief=tk.RAISED, bg="lightblue", fg="black", font=("Arial", 12))
+        self.search_recipes_button = tk.Button(self.frame, text="Show Recipes based on Ingredients", 
+                                            command=self.open_search_recipes_window, relief=tk.RAISED, 
+                                            bg="lightblue", fg="black", font=("Arial", 12))
         self.search_recipes_button.pack(pady=5)
+        self.search_recipes_button.bind("<Enter>", lambda e: self.search_recipes_button.config(bg="#ADD8E6"))  # Світліший блакитний
+        self.search_recipes_button.bind("<Leave>", lambda e: self.search_recipes_button.config(bg="lightblue"))
 
-        self.recipe_list = tk.Listbox(self.frame, height=15, width=50)
-        self.recipe_list.pack(pady=10, padx=10, side=tk.LEFT, fill=tk.BOTH, expand=True)
-
-        self.scrollbar = tk.Scrollbar(self.frame, orient=tk.VERTICAL)
-        self.scrollbar.config(command=self.recipe_list.yview)
-        self.scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
-
-        self.recipe_list.config(yscrollcommand=self.scrollbar.set)
-
-        self.delete_recipe_button = tk.Button(self.frame, text="Delete Recipe", command=self.delete_recipe, relief=tk.RAISED, bg="lightpink", fg="black", font=("Arial", 12))
+        self.delete_recipe_button = tk.Button(self.frame, text="Delete Recipe", command=self.delete_recipe, 
+                                            relief=tk.RAISED, bg="lightpink", fg="black", font=("Arial", 12))
         self.delete_recipe_button.pack(pady=5)
+        self.delete_recipe_button.bind("<Enter>", lambda e: self.delete_recipe_button.config(bg="#FFB6C1"))  # Світліший рожевий
+        self.delete_recipe_button.bind("<Leave>", lambda e: self.delete_recipe_button.config(bg="lightpink"))
 
         self.protocol("WM_DELETE_WINDOW", self.on_closing)  # Встановлення обробника події закриття вікна
 
